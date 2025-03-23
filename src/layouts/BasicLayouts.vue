@@ -10,7 +10,13 @@
         </a-layout-content>
       </a-layout>
       <a-layout-footer class="footer">
-        <a target="_blank" style="color: white"> Lantz OJ </a>
+        <a
+          href="https://github.com/Lantz-run/yuoj-frontend-lantz"
+          style="color: white"
+          target="_blank"
+        >
+          LANTZ OJ
+        </a>
       </a-layout-footer>
     </a-layout>
   </div>
