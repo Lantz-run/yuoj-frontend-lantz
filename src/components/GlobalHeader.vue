@@ -74,6 +74,7 @@ import checkAccess from "@/access/CheckAccess";
 import ACCESS_ENUM from "@/access/accessEnum";
 import { UserControllerService } from "../../generated";
 import message from "@arco-design/web-vue/es/message";
+import { IconUser, IconExport } from "@arco-design/web-vue/es/icon";
 
 const router = useRouter();
 const store = useStore();
