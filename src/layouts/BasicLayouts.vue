@@ -35,7 +35,7 @@
       rgba(194, 179, 179, 0.5),
       rgba(191, 170, 170, 0.5)
     ),
-    url("@/assets/bg.jpg") 0% 0% / 100% 100%;
+    url("@/assets/bg.jpg") 0% 0% / 100% 100% fixed;
   padding: 20px;
   border-radius: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0);
