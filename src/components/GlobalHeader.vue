@@ -25,14 +25,39 @@
       <a-col flex="100px">
         <div class="avatar">
           <a-space size="large">
-            <router-link to="/Info">
-              <a-avatar trigger-type="mask">
-                <img alt="avatar" :src="require('@/assets/avatar/ava01.jpg')" />
-                <template #trigger-icon>
-                  <IconEdit />
+            <!-- 已登录状态 -->
+            <template v-if="loginUser">
+              <a-dropdown>
+                <a-avatar trigger-type="mask" class="avatar-trigger">
+                  <img
+                    alt="avatar"
+                    :src="require('@/assets/avatar/ava01.jpg')"
+                  />
+                  <template #trigger-icon>
+                    <IconEdit />
+                  </template>
+                </a-avatar>
+                <template #content>
+                  <a-doption @click="handleUserInfo">
+                    <icon-user :style="{ marginRight: '6px' }" />
+                    个人主页
+                  </a-doption>
+                  <a-doption @click="handleLogout">
+                    <icon-export :style="{ marginRight: '6px' }" />
+                    退出登录
+                  </a-doption>
                 </template>
-              </a-avatar>
-            </router-link>
+              </a-dropdown>
+            </template>
+
+            <!-- 未登录状态 -->
+            <template v-else>
+              <div class="unLogin-text">
+                <a-link href="/user/login" style="color: #efefef"
+                  >未登录
+                </a-link>
+              </div>
+            </template>
           </a-space>
         </div>
       </a-col>
@@ -43,14 +68,53 @@
 <script setup lang="ts">
 import { routes } from "@/router/routes";
 import { useRouter } from "vue-router";
-import { computed, handleError, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/CheckAccess";
 import ACCESS_ENUM from "@/access/accessEnum";
+import { UserControllerService } from "../../generated";
+import message from "@arco-design/web-vue/es/message";
 
 const router = useRouter();
 const store = useStore();
-const loginUser = store.state.user.loginUser;
+const isMenuVisible = ref(false);
+
+const getDefaultState = () => {
+  return {
+    loginUser: {
+      userName: "未登录",
+    },
+  };
+};
+
+const loginUser = computed(() => {
+  const user = store.state.user?.loginUser;
+  return user?.userRole !== ACCESS_ENUM.NOT_LOGIN;
+});
+
+const handleUserInfo = () => {
+  setTimeout(() => {
+    router.push("/Info");
+  }, 50);
+};
+
+// 退出登录
+const handleLogout = () => {
+  message.success("用户" + store.state.user.loginUser.userName + "已退出登录");
+  UserControllerService.userLogoutUsingPost();
+  // 方法一
+  // store.state.user.loginUser = ACCESS_ENUM.NOT_LOGIN;
+  // 方法二
+  store.state.user = getDefaultState();
+  // 注销就返回登录页
+  setTimeout(() => {
+    router.push("/user/login");
+  }, 50);
+};
+
+// 初始化时获取登陆状态
+store.dispatch("user/login");
+
 // 默认主页
 const selectedKeys = ref(["/"]);
 
@@ -104,6 +168,10 @@ const doMenuClick = (key: string) => {
 
 .logo {
   height: 48px;
+}
+
+.avatar {
+  margin-right: 8px;
 }
 
 /* 修改头部背景色 */
