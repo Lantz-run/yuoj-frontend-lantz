@@ -38,7 +38,7 @@
                     alt="avatar"
                     src="@/assets/avatar/ava01.jpg"
                   />
-                  <template #trigger-icon> </template>
+                  <template #trigger-icon></template>
                 </a-avatar>
                 <template #content>
                   <a-doption @click="handleUserInfo">
