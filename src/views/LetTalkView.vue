@@ -102,7 +102,7 @@ onUnmounted(() => {
 }
 
 .content-spacer {
-  background: #9bcbc0;
+  background: rgba(155, 203, 192, 0.6);
   border-radius: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   font-weight: bold;

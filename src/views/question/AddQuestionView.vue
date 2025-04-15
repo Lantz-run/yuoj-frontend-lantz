@@ -1,7 +1,11 @@
 <template>
   <div id="addQuestionView">
-    <h2>创建题目</h2>
-    <a-form :model="form" label-align="left">
+    <h2 style="margin-left: 10px">创建题目</h2>
+    <a-form
+      :model="form"
+      label-align="left"
+      style="margin-left: 10px; font-weight: bold"
+    >
       <a-form-item field="title" label="标题">
         <a-input
           v-model="form.title"
@@ -57,7 +61,7 @@
           :key="index"
           no-style
         >
-          <a-space direction="vertical" style="min-width: 640px">
+          <a-space direction="vertical" style="min-width: 480px">
             <a-form-item
               :field="`form.judgeCase[${index}].input`"
               :label="`输入用例${index}`"
@@ -235,5 +239,6 @@ const onAnswerChange = (value: string) => {
 <style scoped>
 #addQuestionView {
   min-width: auto;
+  background-color: rgba(155, 203, 192, 0.5);
 }
 </style>

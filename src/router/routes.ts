@@ -16,6 +16,7 @@ import UserInfoView from "@/views/user/UserInfoView.vue";
 import BasicLayouts from "@/layouts/BasicLayouts.vue";
 import UpdateUserInfoView from "@/views/user/UpdateUserInfoView.vue";
 import LetTalkView from "@/views/LetTalkView.vue";
+import UserLogoutView from "@/views/user/UserLogoutView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {

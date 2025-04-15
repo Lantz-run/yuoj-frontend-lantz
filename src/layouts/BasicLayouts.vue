@@ -10,7 +10,13 @@
         </a-layout-content>
       </a-layout>
       <a-layout-footer class="footer">
-        <a target="_blank" style="color: white"> Lantz OJ </a>
+        <a
+          href="https://github.com/Lantz-run/yuoj-frontend-lantz"
+          style="color: white"
+          target="_blank"
+        >
+          LANTZ OJ
+        </a>
       </a-layout-footer>
     </a-layout>
   </div>
@@ -29,7 +35,7 @@
       rgba(194, 179, 179, 0.5),
       rgba(191, 170, 170, 0.5)
     ),
-    url("@/assets/bg.jpg") 0% 0% / 100% 100%;
+    url("@/assets/bg.jpg") 0% 0% / 100% 100% fixed;
   padding: 20px;
   border-radius: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0);

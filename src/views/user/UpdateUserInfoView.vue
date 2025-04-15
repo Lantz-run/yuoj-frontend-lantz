@@ -5,7 +5,6 @@
         <div class="header">
           <h2>修改资料</h2>
         </div>
-
         <a-descriptions class="userInfo" layout="vertical" :column="1" bordered>
           <a-form
             style="max-width: 500px; margin: 0 auto"
@@ -13,6 +12,19 @@
             auto-label-width
             :model="form"
           >
+            <a-form-item field="userAvatar" label="用户头像">
+              <a-avatar
+                id="userAvatar"
+                @click="onClick"
+                :style="{ backgroundColor: '#00BCD4' }"
+                trigger-type="mask"
+              >
+                <img class="avatar-image" alt="avatar" :src="form.userAvatar" />
+                <template #trigger-icon>
+                  <IconEdit />
+                </template>
+              </a-avatar>
+            </a-form-item>
             <!-- 昵称 -->
             <a-form-item field="userName" label="昵称">
               <a-input v-model="form.userName" placeholder="请输入昵称" />
@@ -59,6 +71,7 @@ import { ref, reactive, onMounted } from "vue";
 import { Message } from "@arco-design/web-vue";
 import { UserControllerService, UserUpdateRequest } from "../../../generated";
 import { useRouter } from "vue-router";
+import { IconEdit } from "@arco-design/web-vue/es/icon";
 
 const form = reactive({
   userName: "",
@@ -71,6 +84,15 @@ const form = reactive({
 const isEditing = ref(false);
 const saving = ref(false);
 const router = useRouter();
+
+// 用户头像
+const onClick = () => {
+  if (form.userAvatar === null) {
+    let result = "@/assets/avatar/ava01.jpg";
+    alert("当前头像为默认路径: " + result);
+    form.userAvatar = result;
+  }
+};
 
 // 初始化加载数据
 onMounted(async () => {
@@ -96,6 +118,9 @@ const saveChanges = async () => {
     await UserControllerService.updateUserUsingPost(form);
     Message.success("修改保存成功");
     isEditing.value = false;
+    setTimeout(() => {
+      router.push("/Info");
+    }, 500);
   } catch (error) {
     Message.error("保存失败，请稍后重试");
   } finally {

@@ -95,8 +95,9 @@ const handleSubmit = async (data: any) => {
       path: "/",
       replace: true,
     });
+    message.success("登录成功, 欢迎用户" + store.state.user.loginUser.userName);
   } else {
-    message.error("登陆失败，" + res.message);
+    message.error("登录失败，" + res.message);
   }
 };
 </script>

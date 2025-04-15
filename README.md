@@ -1,35 +1,18 @@
 ---
-typora-copy-images-to: picture
+typora-copy-images-to: src\assets\images
 ---
 
-# yuoj-frontend
+# Online System
 
-## Project setup
-```
-npm install
-```
+## 前端展示图
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![1744695273829](src/assets/images/1744695273829.png)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![1744695311093](src/assets/images/1744695311093.png)
 
-### Lints and fixes files
-```
-npm run lint
-```
+![1744695359278](src/assets/images/1744695359278.png)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-
-
+![1744695404096](src/assets/images/1744695404096.png)
 
 ## 确认环境！！
 

@@ -11,7 +11,13 @@
         <router-view />
       </a-layout-content>
       <a-layout-footer class="footer">
-        <a target="_blank"> 欢迎来到 Lantz OJ </a>
+        <a-link
+          href="https://github.com/Lantz-run"
+          target="_blank"
+          style="color: #1b1b1b; font-weight: bolder"
+        >
+          欢迎来到 Lantz OJ
+        </a-link>
       </a-layout-footer>
     </a-layout>
   </div>
@@ -20,7 +26,11 @@
 <style scoped>
 #userLayout {
   text-align: center;
-  background: linear-gradient(60deg, #8c76a8, #c86363);
+  background: linear-gradient(
+      rgba(194, 179, 179, 0.4),
+      rgba(191, 170, 170, 0.4)
+    ),
+    url("@/assets/UserBg.jpg") 0% 0% / 100% 100% fixed;
 }
 
 #userLayout .logo {
@@ -37,7 +47,7 @@
 }
 
 #userLayout .footer {
-  background: #efefef;
+  background: rgba(158, 122, 191, 0.43);
   padding: 16px;
   position: sticky;
   bottom: 0;
