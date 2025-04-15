@@ -28,6 +28,7 @@
             <!-- 已登录状态 -->
             <template v-if="loginUser">
               <a-dropdown>
+<<<<<<< HEAD
                 <a-avatar
                   id="userAvatar"
                   :style="{ backgroundColor: '#00BCD4' }"
@@ -39,13 +40,27 @@
                     src="@/assets/avatar/ava01.jpg"
                   />
                   <template #trigger-icon></template>
+=======
+                <a-avatar trigger-type="mask" class="avatar-trigger">
+                  <img
+                    alt="avatar"
+                    :src="require('@/assets/avatar/ava01.jpg')"
+                  />
+                  <template #trigger-icon>
+                    <IconEdit />
+                  </template>
+>>>>>>> 24f28bf085b348fa710dd4fb7f517f177e61e5be
                 </a-avatar>
                 <template #content>
                   <a-doption @click="handleUserInfo">
                     <icon-user :style="{ marginRight: '6px' }" />
                     个人主页
                   </a-doption>
+<<<<<<< HEAD
                   <a-doption @click="handleLogout" style="color: #cb0f0f">
+=======
+                  <a-doption @click="handleLogout">
+>>>>>>> 24f28bf085b348fa710dd4fb7f517f177e61e5be
                     <icon-export :style="{ marginRight: '6px' }" />
                     退出登录
                   </a-doption>
@@ -56,7 +71,11 @@
             <!-- 未登录状态 -->
             <template v-else>
               <div class="unLogin-text">
+<<<<<<< HEAD
                 <a-link href="/user/login" style="color: #000000"
+=======
+                <a-link href="/user/login" style="color: #efefef"
+>>>>>>> 24f28bf085b348fa710dd4fb7f517f177e61e5be
                   >未登录
                 </a-link>
               </div>
@@ -71,16 +90,25 @@
 <script setup lang="ts">
 import { routes } from "@/router/routes";
 import { useRouter } from "vue-router";
+<<<<<<< HEAD
 import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import checkAccess from "@/access/CheckAccess";
 import ACCESS_ENUM from "@/access/accessEnum";
 import { UserControllerService, UserUpdateRequest } from "../../generated";
+=======
+import { computed, onMounted, onUnmounted, ref } from "vue";
+import { useStore } from "vuex";
+import checkAccess from "@/access/CheckAccess";
+import ACCESS_ENUM from "@/access/accessEnum";
+import { UserControllerService } from "../../generated";
+>>>>>>> 24f28bf085b348fa710dd4fb7f517f177e61e5be
 import message from "@arco-design/web-vue/es/message";
 import { IconUser, IconExport } from "@arco-design/web-vue/es/icon";
 
 const router = useRouter();
 const store = useStore();
+<<<<<<< HEAD
 
 const form = reactive({
   userName: "",
@@ -89,6 +117,9 @@ const form = reactive({
   userProfile: "",
   userRole: "",
 } as UserUpdateRequest);
+=======
+const isMenuVisible = ref(false);
+>>>>>>> 24f28bf085b348fa710dd4fb7f517f177e61e5be
 
 const getDefaultState = () => {
   return {
