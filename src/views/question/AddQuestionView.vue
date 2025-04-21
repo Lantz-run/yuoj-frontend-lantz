@@ -3,7 +3,7 @@
     <h2 style="margin-left: 10px">创建题目</h2>
     <a-form
       :model="form"
-      label-align="left"
+      label-align="right"
       style="margin-left: 10px; font-weight: bold"
     >
       <a-form-item field="title" label="标题">
@@ -51,52 +51,54 @@
         </a-space>
       </a-form-item>
 
-      <a-form-item
-        label="测试用例配置"
-        :content-flex="false"
-        :merge-props="false"
-      >
-        <a-form-item
+      <div class="judge-case-container">
+        <div
           v-for="(judgeCaseItem, index) of form.judgeCase"
           :key="index"
-          no-style
+          class="case-item"
         >
-          <a-space direction="vertical" style="min-width: 480px">
-            <a-form-item
-              :field="`form.judgeCase[${index}].input`"
-              :label="`输入用例${index}`"
-              :key="index"
-            >
-              <a-input
-                v-model="judgeCaseItem.input"
-                placeholder="请输入测试输入用例"
-              />
-            </a-form-item>
-            <a-form-item
-              :field="`form.judgeCase[${index}].output`"
-              :label="`输出用例${index}`"
-              :key="index"
-            >
-              <a-input
-                v-model="judgeCaseItem.output"
-                placeholder="请输入测试输出用例"
-              />
-            </a-form-item>
-            <a-button
-              @click="handleDelete(index)"
-              type="dashed"
-              status="danger"
-            >
-              Delete Example
-            </a-button>
-          </a-space>
-        </a-form-item>
-        <div style="margin-top: 20px">
-          <a-button @click="handleAdd" type="dashed" status="success"
-            >Add New Example
-          </a-button>
+          <a-form-item
+            label="测试用例配置"
+            :content-flex="false"
+            :merge-props="false"
+          >
+            <a-space direction="vertical" style="min-width: 480px">
+              <a-form-item
+                :field="`form.judgeCase[${index}].input`"
+                :label="`输入用例${index}`"
+                :key="index"
+              >
+                <a-textarea
+                  v-model="judgeCaseItem.input"
+                  placeholder="请输入测试输入用例"
+                />
+              </a-form-item>
+              <a-form-item
+                :field="`form.judgeCase[${index}].output`"
+                :label="`输出用例${index}`"
+                :key="index"
+              >
+                <a-textarea
+                  v-model="judgeCaseItem.output"
+                  placeholder="请输入测试输出用例"
+                />
+              </a-form-item>
+              <a-button
+                @click="handleDelete(index)"
+                type="dashed"
+                status="danger"
+              >
+                Delete Example
+              </a-button>
+            </a-space>
+            <div style="margin-top: 20px">
+              <a-button @click="handleAdd" type="dashed" status="success"
+                >Add New Example
+              </a-button>
+            </div>
+          </a-form-item>
         </div>
-      </a-form-item>
+      </div>
 
       <div style="margin-top: 20px" />
       <a-form-item>
@@ -238,7 +240,23 @@ const onAnswerChange = (value: string) => {
 
 <style scoped>
 #addQuestionView {
-  min-width: auto;
+  min-width: 100%;
   background-color: rgba(155, 203, 192, 0.5);
+}
+
+:deep(.bytemd-fullscreen.bytemd) {
+  z-index: 100;
+}
+
+.judge-case-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.case-item {
+  padding: 12px;
+  border-radius: 4px;
 }
 </style>

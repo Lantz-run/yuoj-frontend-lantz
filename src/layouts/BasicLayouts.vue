@@ -10,13 +10,14 @@
         </a-layout-content>
       </a-layout>
       <a-layout-footer class="footer">
-        <a
+        <a-link
           href="https://github.com/Lantz-run/yuoj-frontend-lantz"
           style="color: white"
           target="_blank"
         >
+          <icon-github style="margin-right: 4px; font-size: 18px" />
           LANTZ OJ
-        </a>
+        </a-link>
       </a-layout-footer>
     </a-layout>
   </div>
@@ -55,5 +56,5 @@
 </style>
 <script setup lang="ts">
 import GlobalHeader from "@/components/GlobalHeader.vue";
-import QuestionsView from "@/views/question/QuestionsView.vue";
+import { IconGithub } from "@arco-design/web-vue/es/icon";
 </script>

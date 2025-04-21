@@ -13,7 +13,7 @@
             disabled
           >
             <div class="title-bar">
-              <img class="logo" src="../assets/Oj-Logo.svg" />
+              <img class="logo" src="../assets/Oj-Logo.png" />
               <div class="title">Lantz OJ</div>
             </div>
           </a-menu-item>
@@ -36,7 +36,8 @@
                   <img
                     class="avatar-image"
                     alt="avatar"
-                    src="@/assets/avatar/ava01.jpg"
+                    :src="userAvatarUrl"
+                    @error="handleImageError"
                   />
                 </a-avatar>
                 <template #content>
@@ -72,7 +73,7 @@
 <script setup lang="ts">
 import { routes } from "@/router/routes";
 import { useRouter } from "vue-router";
-import { computed, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { UserControllerService, UserUpdateRequest } from "../../generated";
 import checkAccess from "@/access/CheckAccess";
@@ -82,6 +83,37 @@ import { IconUser, IconExport } from "@arco-design/web-vue/es/icon";
 
 const router = useRouter();
 const store = useStore();
+
+// 用户头像地址
+const userAvatarUrl = ref("");
+
+// 默认头像地址（当数据库没有头像时使用）
+const defaultAvatar = "@/assets/avatar/ava01.jpg";
+
+// 加载用户数据
+const loadUserData = async () => {
+  try {
+    const res = await UserControllerService.getLoginUserUsingGet();
+    if (res.code === 0 && res.data) {
+      // 拼接完整头像地址
+      userAvatarUrl.value = res.data.userAvatar
+        ? res.data.userAvatar
+        : defaultAvatar;
+    }
+  } catch (err) {
+    console.error("获取用户信息失败:", err);
+    userAvatarUrl.value = defaultAvatar;
+  }
+};
+
+// 处理图片加载失败
+const handleImageError = () => {
+  userAvatarUrl.value = defaultAvatar;
+};
+// 组件挂载时加载数据
+onMounted(() => {
+  loadUserData();
+});
 
 const form = reactive({
   userName: "",
@@ -182,6 +214,7 @@ const doMenuClick = (key: string) => {
 
 .logo {
   height: 48px;
+  width: 48px;
 }
 
 .avatar {

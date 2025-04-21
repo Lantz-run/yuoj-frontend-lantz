@@ -17,6 +17,7 @@ import BasicLayouts from "@/layouts/BasicLayouts.vue";
 import UpdateUserInfoView from "@/views/user/UpdateUserInfoView.vue";
 import LetTalkView from "@/views/LetTalkView.vue";
 import UserLogoutView from "@/views/user/UserLogoutView.vue";
+import UserManage from "@/views/user/UserManage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -36,6 +37,7 @@ export const routes: Array<RouteRecordRaw> = [
       },
     ],
     meta: {
+      title: "用户",
       hideInMenu: true,
     },
   },
@@ -43,16 +45,25 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "主页",
     component: HomeView,
+    meta: {
+      title: "主页",
+    },
   },
   {
     path: "/questions",
     name: "浏览题目",
     component: QuestionsView,
+    meta: {
+      title: "浏览题目",
+    },
   },
   {
     path: "/question_submit",
     name: "浏览题目提交",
     component: QuestionSubmitView,
+    meta: {
+      title: "浏览题目提交",
+    },
   },
   {
     path: "/view/question/:id",
@@ -60,6 +71,7 @@ export const routes: Array<RouteRecordRaw> = [
     component: ViewQuestionsView,
     props: true,
     meta: {
+      title: "在线做题",
       access: ACCESS_ENUM.USER,
       hideInMenu: true,
     },
@@ -69,6 +81,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "创建题目",
     component: AddQuestionView,
     meta: {
+      title: "创建题目",
       access: ACCESS_ENUM.ADMIN,
     },
   },
@@ -77,6 +90,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "更新题目",
     component: AddQuestionView,
     meta: {
+      title: "更新题目",
       access: ACCESS_ENUM.ADMIN,
       hideInMenu: true,
     },
@@ -86,6 +100,16 @@ export const routes: Array<RouteRecordRaw> = [
     name: "管理题目",
     component: ManageQuestionView,
     meta: {
+      title: "管理题目",
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/managerUser",
+    name: "用户管理列表",
+    component: UserManage,
+    meta: {
+      title: "用户管理列表",
       access: ACCESS_ENUM.ADMIN,
     },
   },
@@ -94,6 +118,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "用户信息",
     component: UserInfoView,
     meta: {
+      title: "用户信息",
       access: ACCESS_ENUM.USER,
       hideInMenu: true,
     },
@@ -103,6 +128,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "更新用户信息",
     component: UpdateUserInfoView,
     meta: {
+      title: "更新用户信息",
       access: ACCESS_ENUM.USER,
       hideInMenu: true,
     },
@@ -112,6 +138,7 @@ export const routes: Array<RouteRecordRaw> = [
     name: "说说",
     component: LetTalkView,
     meta: {
+      title: "说说",
       access: ACCESS_ENUM.USER,
       hideInMenu: false,
     },
@@ -132,6 +159,7 @@ export const routes: Array<RouteRecordRaw> = [
     // which is lazy-loaded when the route is visited.
     component: AboutView,
     meta: {
+      title: "关于本项目",
       hideInMenu: true,
     },
   },

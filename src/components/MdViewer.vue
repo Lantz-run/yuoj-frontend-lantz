@@ -7,6 +7,7 @@ import gfm from "@bytemd/plugin-gfm";
 import highlight from "@bytemd/plugin-highlight";
 import { Viewer } from "@bytemd/vue-next";
 import { withDefaults, defineProps } from "vue";
+import gemoji from "@bytemd/plugin-gemoji";
 
 /**
  * 定义组件属性的类型
@@ -18,6 +19,7 @@ interface Props {
 const plugins = [
   gfm(),
   highlight(),
+  gemoji(),
   // Add more plugins here
 ];
 

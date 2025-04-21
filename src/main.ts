@@ -9,3 +9,10 @@ import "@/access";
 import "bytemd/dist/index.css";
 
 createApp(App).use(ArcoVue).use(store).use(router).mount("#app");
+
+router.beforeEach(async (to) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title as string;
+  }
+});

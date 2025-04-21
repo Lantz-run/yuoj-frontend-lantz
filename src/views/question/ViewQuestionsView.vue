@@ -1,7 +1,7 @@
 <template>
   <div id="viewQuestionsView">
-    <a-row :gutter="[24, 24]">
-      <a-col :md="12" :xs="24">
+    <a-row :gutter="[24, 24]" class="equal-height-row">
+      <a-col :md="12" :xs="24" class="height-full">
         <a-tabs default-active-key="question">
           <a-tab-pane key="question" title="题目">
             <a-card v-if="question" :title="question.title">
@@ -40,32 +40,39 @@
           </a-tab-pane>
         </a-tabs>
       </a-col>
-      <a-col :md="12" :xs="24">
-        <a-form :model="form" layout="inline">
-          <a-form-item field="title" label="编程语言" style="min-width: 240px">
-            <a-select
-              v-model="form.language"
-              :style="{ width: '320px' }"
-              placeholder="选择编程语言"
+      <a-col :md="12" :xs="24" class="height-full">
+        <div class="right-container">
+          <a-form :model="form" layout="inline">
+            <a-form-item
+              field="title"
+              label="编程语言"
+              style="min-width: 240px"
             >
-              <a-option>java</a-option>
-              <a-option>cpp</a-option>
-            </a-select>
-          </a-form-item>
-        </a-form>
-        <CodeEditor
-          :value="form.code as string"
-          :language="form.language"
-          :handle-change="changeCode"
-        />
+              <a-select
+                v-model="form.language"
+                :style="{ width: '220px' }"
+                placeholder="选择编程语言"
+              >
+                <a-option>java</a-option>
+                <a-option>cpp</a-option>
+              </a-select>
+            </a-form-item>
+            <a-button
+              type="primary"
+              status="success"
+              style="margin-left: 30px; min-width: 100px"
+              @click="doSubmit"
+              >提交代码
+            </a-button>
+          </a-form>
+          <CodeEditor
+            style="min-height: 600px"
+            :value="form.code as string"
+            :language="form.language"
+            :handle-change="changeCode"
+          />
+        </div>
         <a-divider :size="0" />
-        <a-button
-          type="primary"
-          status="success"
-          style="min-width: 150px"
-          @click="doSubmit"
-          >提交代码
-        </a-button>
       </a-col>
     </a-row>
   </div>
@@ -143,6 +150,7 @@ const changeCode = (value: string) => {
 #viewQuestionsView {
   max-width: 1400px;
   margin: 0 auto;
+  height: 100%;
 }
 
 #viewQuestionsView .arco-space-horizontal .arco-space-item {

@@ -3,7 +3,7 @@
     <a-layout style="min-height: 100vh">
       <a-layout-header class="header">
         <a-space>
-          <img src="../assets/Oj-Logo.svg" class="logo" />
+          <img src="../assets/Oj-Logo.png" class="logo" />
           <div style="color: black">Lantz OJ</div>
         </a-space>
       </a-layout-header>
@@ -34,6 +34,7 @@
 }
 
 #userLayout .logo {
+  margin-top: 3px;
   width: 64px;
   height: 64px;
 }

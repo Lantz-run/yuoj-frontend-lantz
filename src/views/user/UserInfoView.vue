@@ -3,7 +3,7 @@
     <a-space class="userDescription" direction="vertical" size="large" fill>
       <!-- 头像区域 -->
       <a-space class="avatarSpace">
-        <img class="avatar" :src="require('@/assets/avatar/ava01.jpg')" />
+        <img class="avatar" :src="userAvatarUrl" @error="handleImageError" />
       </a-space>
 
       <!-- 用户信息展示 -->
@@ -39,6 +39,37 @@ import { UserControllerService } from "../../../generated";
 
 const router = useRouter();
 
+// 用户头像地址
+const userAvatarUrl = ref("");
+
+// 默认头像地址（当数据库没有头像时使用）
+const defaultAvatar = "@/assets/avatar/ava01.jpg";
+
+// 加载用户数据
+const loadUserData = async () => {
+  try {
+    const res = await UserControllerService.getLoginUserUsingGet();
+    if (res.code === 0 && res.data) {
+      // 拼接完整头像地址
+      userAvatarUrl.value = res.data.userAvatar
+        ? res.data.userAvatar
+        : defaultAvatar;
+    }
+  } catch (err) {
+    console.error("获取用户信息失败:", err);
+    userAvatarUrl.value = defaultAvatar;
+  }
+};
+
+// 处理图片加载失败
+const handleImageError = () => {
+  userAvatarUrl.value = defaultAvatar;
+};
+
+// 组件挂载时加载数据
+onMounted(() => {
+  loadUserData();
+});
 // 用户信息响应式对象
 const userInfo = ref({
   id: "",
